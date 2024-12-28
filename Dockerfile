@@ -1,8 +1,14 @@
 FROM nvcr.io/nvidia/l4t-base:r32.4.3
 
 WORKDIR /jetsonNano/sensorStorm/
-COPY . .
 
-RUN cmake
+# Prepare the environment for compilation
+RUN apt-get update && \
+    apt-get install -y gcc g++ cmake
 
-## Gonna need to find a way to install the cmake dependencies
+COPY . /jetsonNano/sensorStorm/
+
+# Actually run the build
+RUN mkdir build && cd build && cmake .. && make
+
+CMD ["./build/bin/SensorStorm"]
