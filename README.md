@@ -40,16 +40,16 @@ This github repository defines the software package for ETL and administration o
 
 ## Getting Started
 
-This project relies heavily on both emulation via QEMU and containerization via DOCKER. For a quick introduction to either of those technologies, please see [https://docs.google.com/document/d/1wemsVqKCjdM_Zzt9AddQuQp1n9oAnCHZUxd34U-N9PI/edit?tab=t.0#heading=h.cxk14xgw75wh](The live document) overviewing the main features provided to the developers. As well, this document provides a brief introduction to docker.
+This project relies heavily on both emulation via QEMU and containerization via DOCKER. For a quick introduction to either of those technologies, please see ![https://docs.google.com/document/d/1wemsVqKCjdM_Zzt9AddQuQp1n9oAnCHZUxd34U-N9PI/edit?tab=t.0#heading=h.cxk14xgw75wh](The live document) overviewing the main features provided to the developers. As well, this document provides a brief introduction to docker.
 
-For further details on what exactly each technology does invidually, and in far more depth than we would ever cover in our docs, please see [https://docs.docker.com/get-started/](the official docker get started documentation).
+For further details on what exactly each technology does invidually, and in far more depth than we would ever cover in our docs, please see ![https://docs.docker.com/get-started/](the official docker get started documentation).
 
 
 ### Prerequisites
 
-Running docker, and the associated docker images as containers, obviously requires the pre-requisite docker software. When developing the application, we used [https://docs.docker.com/get-started/get-docker/](docker desktop). This allows a user to monitor applications while they run, using a similar interface to what would be expected from, for example, heroku or AWS logging software.
+Running docker, and the associated docker images as containers, obviously requires the pre-requisite docker software. When developing the application, we used ![https://docs.docker.com/get-started/get-docker/](docker desktop). This allows a user to monitor applications while they run, using a similar interface to what would be expected from, for example, heroku or AWS logging software.
 
-As well, this project relies on the [https://github.com/multiarch/qemu-user-static](qemu-user-static) library. The Makefile uses this to run the ARM64 container on an AMD64 styled machine. (Note that AMD stands for both intel and AMD processors, so an AMD machine should work with as well).
+As well, this project relies on the ![https://github.com/multiarch/qemu-user-static](qemu-user-static) library. The Makefile uses this to run the ARM64 container on an AMD64 styled machine. (Note that AMD stands for both intel and AMD processors, so an AMD machine should work with as well).
 
 Obviously, you are hence also required to use a Makefile. That means for the windows users, it is expected they get access to WSL2 (commonly just called WSL) and run this program on that system instead. Moving away from this is possible, though would require changing the CMake build system. In general, just expect C/C++ to be typically developed via Linux.
 
