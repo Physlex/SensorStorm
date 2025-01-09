@@ -8,4 +8,13 @@
 #ifndef _SRC_CORE_HPP_
 #define _SRC_CORE_HPP_
 
+class Example {
+  public:
+    // Default example constructor
+    Example();
+
+    // Basic example of a print function to be consume in an example
+    void print();
+};
+
 #endif // _SRC_CORE_HPP_
