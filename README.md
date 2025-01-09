@@ -1,6 +1,5 @@
 # Sensor Storm
 
-![License](https://img.shields.io/github/license/Physlex/SensorStorm)
 ![Stars](https://img.shields.io/github/stars/Physlex/SensorStorm)
 ![Issues](https://img.shields.io/github/issues/Physlex/SensorStorm)
 
