@@ -1,0 +1,7 @@
+name: "Github Pages documentation"
+
+on: push
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest

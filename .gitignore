@@ -8,3 +8,7 @@ build
 # Ignore system files
 *.swp
 .DS_Store
+
+# Generated for Jekyll github pages documentation
+/docs/**
+!/docs/.gitkeep
