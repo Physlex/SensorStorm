@@ -12,3 +12,7 @@ Example::Example() {
 void Example::print() {
     printf("Printing something simple...\n");
 }
+
+int Example::returnNumber() {
+    return 1;
+}

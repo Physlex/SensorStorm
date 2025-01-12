@@ -15,6 +15,9 @@ class Example {
 
     // Basic example of a print function to be consume in an example
     void print();
+
+    // Literally just returns the number 1
+    int returnNumber();
 };
 
 #endif // _SRC_CORE_HPP_
