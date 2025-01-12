@@ -21,6 +21,27 @@ jobs:
             - name: Checkout repo
               uses: actions/checkout@v2
 
+            - name: Build docker image
+              run: |
+                docker build --platform linux/arm64 -t sensorstorm-host-image .
+
+            - name: Save docker image
+              run: |
+                docker save sensorstorm-host-image > sensorstorm-host-image.tar
+
+            - name: Upload build image as artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: sensorstorm-host-image
+                path: "./sensorstorm-host-image.tar"
+                if-no-files-found: error
+                compression-level: 0
+                overwrite: true
+
+    weather-station:
+        runs-on: ubuntu-latest
+
+        steps:
             - name: Set up QEMU
               uses: docker/setup-qemu-action@v3
               with:
@@ -30,9 +51,14 @@ jobs:
               run: |
                 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
-            - name: Build docker image
+            - name: Download the compiled artifact / application setup
+              uses: actions/download-artifact@v4
+              with:
+                name: sensorstorm-host-image
+
+            - name: Load the docker image
               run: |
-                docker build --platform linux/arm64 -t sensorstorm-host-image .
+                docker load -i sensorstorm-host-image.tar
 
             - name: Run unit tests for WeatherStation
               run: |
