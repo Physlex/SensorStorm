@@ -1,0 +1,4 @@
+services:
+  weather-station:
+    build: .
+    platform: linux/arm64

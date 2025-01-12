@@ -1,11 +1,9 @@
 # This Makefile is explicitly used to simplify working with docker builds
-# (Some of these commands are so friggin long...)
 
 # PROJECT SPECIFICATIONS
 
 PROJECT_NAME:=sensorstorm-image
 DOCKER:=docker
-BUILDER:=buildx
 WORKSPACE:=.
 
 
@@ -15,30 +13,24 @@ BUILD:=build
 RUN:=run
 
 
-# MULTIPLATFORM SETUP
-
-XPLATFORM:=--platform linux/arm64,linux/amd64
-XPLATFORM_TAG:=-t multiplatform
-
-
-buildx:
-	${DOCKER} ${BUILDER} create --use
-
-docker-build-multiplatform:
-	${DOCKER} ${BUILDER} ${BUILD} ${XPLATFORM} ${XPLATFORM_TAG} ${WORKSPACE}
-
-
 # EMULATED HOST SETUP
 
 HOST_TAG:=-t sensorstorm-host-image
-QEMU_SETUP:=--rm --privileged multiarch/qemu-user-static --reset -p yes
+QEMU_SETUP:=--privileged multiarch/qemu-user-static --reset -p yes
+PLATFORM:=--platform linux/arm64
+QUIETLY:=> /dev/null 2>&1
 
 
+# COMMANDS
+
+# Allows (silently) enabling QEMU
 enable-qemu:
-	${DOCKER} ${RUN} ${QEMU_SETUP} > /dev/null 2>&1
+	${DOCKER} ${RUN} --rm ${QEMU_SETUP} ${QUIETLY}
 
-docker-build-host:
-	${DOCKER} ${BUILD} ${HOST_TAG} ${WORKSPACE}
+# Builder for custom docker image
+image:
+	${DOCKER} ${BUILD} ${PLATFORM} ${HOST_TAG} ${WORKSPACE}
 
-docker-run-host: enable-qemu
-	${DOCKER} ${RUN} --rm --platform linux/arm64 ${HOST_TAG}
+# Runs the container using arguments supplied via the ARGS= flag
+run: enable-qemu
+	${DOCKER} ${RUN} --rm ${PLATFORM} ${HOST_TAG} ${ARGS}
