@@ -18,25 +18,34 @@ jobs:
             DOCKER_BUILDKIT: 1
 
         steps:
-            - name: Checkout repo
-              uses: actions/checkout@v2
+          - name: Set up QEMU
+            uses: docker/setup-qemu-action@v3
+            with:
+              platforms: linux/arm64
 
-            - name: Build docker image
-              run: |
-                docker build --platform linux/arm64 -t sensorstorm-host-image .
+          - name: Configure QEMU
+            run: |
+              docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
-            - name: Save docker image
-              run: |
-                docker save sensorstorm-host-image > sensorstorm-host-image.tar
+          - name: Checkout repo
+            uses: actions/checkout@v2
 
-            - name: Upload build image as artifact
-              uses: actions/upload-artifact@v4
-              with:
-                name: sensorstorm-host-image
-                path: "./sensorstorm-host-image.tar"
-                if-no-files-found: error
-                compression-level: 0
-                overwrite: true
+          - name: Build docker image
+            run: |
+              docker build --platform linux/arm64 -t sensorstorm-host-image .
+
+          - name: Save docker image
+            run: |
+              docker save sensorstorm-host-image > sensorstorm-host-image.tar
+
+          - name: Upload build image as artifact
+            uses: actions/upload-artifact@v4
+            with:
+              name: sensorstorm-host-image
+              path: "./sensorstorm-host-image.tar"
+              if-no-files-found: error
+              compression-level: 0
+              overwrite: true
 
     weather-station:
         runs-on: ubuntu-latest
