@@ -2,7 +2,13 @@ name: CI Workflow for automated testing of the weatherflow project
 
 on:
     push:
+        branches: 
+            - main
+            - development
     pull_request:
+        branches:
+            - main
+            - development
 
 jobs:
     build:
