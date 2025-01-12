@@ -44,7 +44,7 @@ jobs:
               name: sensorstorm-host-image
               path: "./sensorstorm-host-image.tar"
               if-no-files-found: error
-              compression-level: 0
+              compression-level: 6
               overwrite: true
 
     weather-station:
