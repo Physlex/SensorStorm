@@ -14,4 +14,4 @@ RUN cat /etc/os-release
 COPY . /jetsonNano/sensorStorm/
 
 # Actually run the build
-RUN mkdir build && cd build && cmake .. && make
+RUN cmake -S . -B build
