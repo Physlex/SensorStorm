@@ -1,5 +1,9 @@
-cmake_minimum_required(VERSION 3.10.2)
+cmake_minimum_required(VERSION 3.11)
 project(WeatherStation CXX)
+
+### INSTALLATION #########################################################################
+
+find_package(librabbitmq CONFIG REQUIRED)
 
 ### APPLICATION ##########################################################################
 
@@ -9,7 +13,7 @@ list(FILTER WEATHER_STATION_SRC EXCLUDE REGEX "src/.*.test.cpp")
 
 # Create executable for weather station application
 add_executable(WeatherStation ${WEATHER_STATION_SRC})
-
+target_link_libraries(WeatherStation PRIVATE librabbitmq::librabbitmq)
 
 ### TESTING ##############################################################################
 
