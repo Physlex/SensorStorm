@@ -1,8 +1,3 @@
-# Integrate vcpkg with CMAKE
-if(EXISTS "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake")
-    set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "vcpkg toolchain file")
-endif()
-
 # Project specifications
 cmake_minimum_required(VERSION 3.11)
 project(SensorStorm VERSION 0.1.0)

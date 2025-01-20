@@ -2,10 +2,6 @@
 cmake_minimum_required(VERSION 3.11)
 project(WeatherStation CXX)
 
-### INSTALLATION #########################################################################
-
-find_package(rabbitmq-c CONFIG REQUIRED)
-
 ### APPLICATION ##########################################################################
 
 # Collect all .cpp files, removing any that have '_test.cpp' in their name
@@ -14,7 +10,6 @@ list(FILTER WEATHER_STATION_SRC EXCLUDE REGEX "src/.*.test.cpp")
 
 # Create executable for weather station application
 add_executable(WeatherStation ${WEATHER_STATION_SRC})
-target_link_libraries(WeatherStation PRIVATE rabbitmq::rabbitmq-static)
 
 ### TESTING ##############################################################################
 

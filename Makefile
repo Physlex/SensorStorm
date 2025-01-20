@@ -28,7 +28,7 @@ enable-qemu:
 	${DOCKER} ${RUN} --rm ${QEMU_SETUP} ${QUIETLY}
 
 # Builder for custom docker image
-image:
+image: enable-qemu
 	${DOCKER} ${BUILD} ${PLATFORM} ${HOST_TAG} ${WORKSPACE}
 
 # Runs the container using arguments supplied via the ARGS= flag
