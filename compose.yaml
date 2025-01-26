@@ -1,4 +1,14 @@
 services:
   weather-station:
-    build: .
+    build:
+      context: .
+      target: weather-station
+    platform: linux/arm64
+
+  nmqx:
+    build:
+      context: .
+      target: nmqx
+    ports:
+      - 1883:1883
     platform: linux/arm64
